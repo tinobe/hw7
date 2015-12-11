@@ -33,4 +33,4 @@ Use the norm <img src="stuffy_stuff/f5.png" width="150">, where <img src="stuffy
 After adjusting the time step continue the integration using the result from the fourth-order scheme (Check for yourself whether it matters which solution you use to continue the integration).
 
 
-For *Tol* = 1e-5 supply a plot for the trajectory (x(t),y(t)) and plot dt versus t to see how the algorithm adjusts the step-size.
+For *Tol* = 1e-5 supply a plot for the trajectory (x(t),y(t)) and plot dt versus t to see how the algorithm adjusts the step-size. Choose your initial dt to be 1e-3.
