@@ -10,7 +10,7 @@ double numerror(const double* const X, const double* const X2);
 void Kutta54(double* const X, double * const X2, const double mu, const double dt);
 
 int main(){
- const double mu=0.012277471,eps=1e-5,T_end=17.065216560157,safetyq=0.6, x0=0.994,y0=0,x0dot=0,y0dot=-2.00158510637908; // Initial values
+ const double mu=0.012277471,eps=1e-10,T_end=17.065216560157,safetyq=0.6, x0=0.994,y0=0,x0dot=0,y0dot=-2.00158510637908; // Initial values
  double dt=1e-3,t=0;
  double X5[4],X4[4],X_anf[4];
   X5[0]=x0;X5[1]=x0dot;X5[2]=y0;X5[3]=y0dot;X4[0]=x0;X4[1]=x0dot;X4[2]=y0;X4[3]=y0dot;  //Arrays
@@ -28,6 +28,8 @@ int main(){
      }
     } else {							// if error is already low enough, increase stepsize again
       dt*=pow((eps/numerror(X5,X4)),1/5.0)*safetyq;
+       for(int i=0;i<4;i++){ X4[i]=X_anf[i]; X5[i]=X_anf[i];}	// return to initial value
+      Kutta54(X5,X4,mu,dt);					// calculate again with increased stepsize
       }                    
     for(int i=0;i<4;i++) X5[i]=X4[i];				// continue with the 4th order solution
    out << t << " " << dt << " " << X4[0] << " " << X4[2] << endl;
